@@ -20,23 +20,26 @@ var Validar;
             if (Validar.Validaciones.ValidarCamposVacios(apellido))
                 flagApellido = true;
             this.AdministarSpanError("spanApellido", flagApellido);
-            if (this.VerificarValidacionesLogin()) {
-                var xhttp_1 = new XMLHttpRequest();
-                xhttp_1.open("POST", "backend/verificarUsuario.php", true);
-                xhttp_1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                var data = "dni=" + dni + "&apellido=" + apellido;
-                xhttp_1.send(data);
-                xhttp_1.onreadystatechange = function () {
-                    if (xhttp_1.readyState == 4 && xhttp_1.status == 200) {
-                        if (xhttp_1.responseText) {
-                            document.getElementById("divEmpty").innerHTML = "<a href='backend/verificarUsuario.php'> verificar si el usuario existe </a>";
-                        }
-                        else {
-                            alert("Algo salio mal.");
-                        }
-                    }
-                };
-            }
+            /* if(this.VerificarValidacionesLogin())
+             {
+                 let xhttp : XMLHttpRequest = new XMLHttpRequest();
+                 xhttp.open("POST","./backend/verificarUsuario.php",true);
+                 xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                 let data:string="dni="+dni+"&apellido="+apellido;
+                 xhttp.send(data);
+ 
+                 xhttp.onreadystatechange = function () {
+                     if (xhttp.readyState == 4 && xhttp.status == 200) {
+                             if(xhttp.responseText){
+                                 alert(dni);
+                                 
+                             }else{
+                                 alert("Algo salio mal.");
+                             }
+                         }
+                     };
+             }*/
+            return this.VerificarValidacionesLogin();
         };
         ValidacionesLogin.AdministarSpanError = function (id, ocultar) {
             if (ocultar) {
@@ -75,6 +78,11 @@ var Validar;
             var legajo = document.getElementById("txtLegajo").value;
             var sueldo = document.getElementById("txtSueldo").value;
             var turno = this.ObtenerTurnoSeleccionado();
+            var foto = document.getElementById("txtImg").value;
+            var flagFoto = false;
+            if (this.ValidarCamposVacios(foto))
+                flagFoto = true;
+            Validar.ValidacionesLogin.AdministarSpanError("spanImg", flagFoto);
             var flagDni = false;
             if (this.ValidarCamposVacios(dni)) {
                 var numeroDni = parseInt(dni);
@@ -113,17 +121,21 @@ var Validar;
             Validar.ValidacionesLogin.AdministarSpanError("spanSueldo", flagSueldo);
             //---------------------------------------------------
             if (Validar.ValidacionesLogin.VerificarValidacionesLogin()) {
-                var xhttp_2 = new XMLHttpRequest();
-                xhttp_2.open("POST", "./backend/Administracion.php", true);
-                xhttp_2.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                var data = "dni=" + dni + "&apellido=" + apellido + "&nombre=" + nombre + "&sexo=" + sexo + "&legajo=" + legajo + "&sueldo=" + sueldo + "&turno=" + turno;
-                xhttp_2.send(data);
-                xhttp_2.onreadystatechange = function () {
-                    if (xhttp_2.readyState == 4 && xhttp_2.status == 200) {
-                        if (xhttp_2.responseText) {
+                var xhttp_1 = new XMLHttpRequest();
+                xhttp_1.open("POST", "./backend/Administracion.php", true);
+                var formDatos = document.getElementById("FormularioDatos");
+                var data = new FormData(formDatos);
+                //xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                //let data:string="dni="+dni+"&apellido="+apellido+"&nombre="+nombre+"&sexo="+sexo+"&legajo="+legajo+"&sueldo="+sueldo+"&turno="+turno;
+                xhttp_1.send(data);
+                xhttp_1.onreadystatechange = function () {
+                    if (xhttp_1.readyState == 4 && xhttp_1.status == 200) {
+                        if (xhttp_1.responseText) {
+                            alert(xhttp_1.responseText);
                             document.getElementById("divEmpty").innerHTML = "<a href='backend/Mostrar.php'> Mostrar </a>";
                         }
                         else {
+                            alert(xhttp_1.responseText);
                             alert("Algo salio mal.");
                         }
                     }

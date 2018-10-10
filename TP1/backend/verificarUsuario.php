@@ -1,5 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Verificar usu</title>
+</head>
+<body>
+    
+</body>
+</html>
 <?php
 include_once "Empleado.php";
+include_once "validarSesion.php";
+/*if(validarSesion())
+{
+    session_name($_POST["apellido"]);
+    session_start();
+}*/
+session_start();
+
 $dni =  $_POST["dni"];
 $apellido= $_POST["apellido"];
 
@@ -26,10 +46,12 @@ fclose($file);
 if(!$flagEstaEmpleado)
 {
     echo "No se encontro el empleado <br><a href='../login.html'>Volver al login</a>";
-    echo $emp->ToString();
+    
 }
 else
 {
+    $_SESSION["DNIEmpleado"] = $dni;
+    
     header("Location: Mostrar.php");
 }
 ?>

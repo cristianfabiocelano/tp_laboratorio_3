@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2>Login</h2>
-    <form action="backend/verificarUsuario.php" method="POST" >
+    <form action="backend/verificarUsuario.php" method="POST" onsubmit="return Validar.ValidacionesLogin.AdministrarValidacionesLogin()"  >
         <div>
             <table  align="Center">
                 <tr>
@@ -24,11 +24,11 @@
                 </tr>
                 <tr>
                     <td>DNI: </td>
-                    <td><input type="number" id="txtDni" size="8" min="1000000" max="55000000"><span style="display:none" id="spanDni">*</span></td>
+                    <td><input type="number" id="txtDni" name="dni"size="8" min="1000000" max="55000000"><span style="display:none" id="spanDni">*</span></td>
                 </tr>
                 <tr>
                     <td>Apellido: </td>
-                    <td><input type="text" id="txtApellido"><span style="display:none" id="spanApellido">*</span></td>
+                    <td><input type="text" id="txtApellido" name="apellido"><span style="display:none" id="spanApellido">*</span></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="right">
-                        <input type="reset" value="Limpiar"><br><input type="button" value="Enviar" onclick="Validar.ValidacionesLogin.AdministrarValidacionesLogin()"  >
+                        <input type="reset" value="Limpiar"><br><input type="submit" value="Enviar"  >
                     </td>
                 </tr>
                 

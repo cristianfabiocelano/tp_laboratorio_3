@@ -21,23 +21,26 @@ var Validar;
             if (Validar.Validaciones.ValidarCamposVacios(apellido))
                 flagApellido = true;
             this.AdministarSpanError("spanApellido", flagApellido);
-            if (this.VerificarValidacionesLogin()) {
-                var xhttp_1 = new XMLHttpRequest();
-                xhttp_1.open("POST", "backend/verificarUsuario.php", true);
-                xhttp_1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                var data = "dni=" + dni + "&apellido=" + apellido;
-                xhttp_1.send(data);
-                xhttp_1.onreadystatechange = function () {
-                    if (xhttp_1.readyState == 4 && xhttp_1.status == 200) {
-                        if (xhttp_1.responseText) {
-                            document.getElementById("divEmpty").innerHTML = "<a href='backend/verificarUsuario.php'> verificar si el usuario existe </a>";
-                        }
-                        else {
-                            alert("Algo salio mal.");
-                        }
-                    }
-                };
-            }
+            /* if(this.VerificarValidacionesLogin())
+             {
+                 let xhttp : XMLHttpRequest = new XMLHttpRequest();
+                 xhttp.open("POST","./backend/verificarUsuario.php",true);
+                 xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                 let data:string="dni="+dni+"&apellido="+apellido;
+                 xhttp.send(data);
+ 
+                 xhttp.onreadystatechange = function () {
+                     if (xhttp.readyState == 4 && xhttp.status == 200) {
+                             if(xhttp.responseText){
+                                 alert(dni);
+                                 
+                             }else{
+                                 alert("Algo salio mal.");
+                             }
+                         }
+                     };
+             }*/
+            return this.VerificarValidacionesLogin();
         };
         ValidacionesLogin.AdministarSpanError = function (id, ocultar) {
             if (ocultar) {

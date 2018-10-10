@@ -6,6 +6,7 @@
         protected $_legajo;//int
         protected $_sueldo;//Double
         protected $_turno;//string
+        protected $_pathFoto;//string
 
         public function __construct($nombre,$apellido,$dni,$sexo,$legajo,$sueldo,$turno)
         {
@@ -33,9 +34,19 @@
             return "El empleado habla {$idioma}"; 
         }
 
+        public function SetPathFoto($foto)
+        {
+            $this->_pathFoto=$foto;   
+        }
+
+        public function GetPathFoto()
+        {
+            return $this->_pathFoto;
+        }
+
         public function ToString()
         {
-            return parent::ToString()."-{$this->_legajo}-{$this->_sueldo}-{$this->_turno}\r\n";
+            return parent::ToString()."-{$this->_legajo}-{$this->_sueldo}-{$this->_turno}-{$this->_pathFoto}\r\n";
         }
     }
 

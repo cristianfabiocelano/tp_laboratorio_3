@@ -13,6 +13,11 @@ var Validar;
             var legajo = document.getElementById("txtLegajo").value;
             var sueldo = document.getElementById("txtSueldo").value;
             var turno = this.ObtenerTurnoSeleccionado();
+            var foto = document.getElementById("txtImg").value;
+            var flagFoto = false;
+            if (this.ValidarCamposVacios(foto))
+                flagFoto = true;
+            Validar.ValidacionesLogin.AdministarSpanError("spanImg", flagFoto);
             var flagDni = false;
             if (this.ValidarCamposVacios(dni)) {
                 var numeroDni = parseInt(dni);
@@ -53,15 +58,19 @@ var Validar;
             if (Validar.ValidacionesLogin.VerificarValidacionesLogin()) {
                 var xhttp_1 = new XMLHttpRequest();
                 xhttp_1.open("POST", "./backend/Administracion.php", true);
-                xhttp_1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                var data = "dni=" + dni + "&apellido=" + apellido + "&nombre=" + nombre + "&sexo=" + sexo + "&legajo=" + legajo + "&sueldo=" + sueldo + "&turno=" + turno;
+                var formDatos = document.getElementById("FormularioDatos");
+                var data = new FormData(formDatos);
+                //xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                //let data:string="dni="+dni+"&apellido="+apellido+"&nombre="+nombre+"&sexo="+sexo+"&legajo="+legajo+"&sueldo="+sueldo+"&turno="+turno;
                 xhttp_1.send(data);
                 xhttp_1.onreadystatechange = function () {
                     if (xhttp_1.readyState == 4 && xhttp_1.status == 200) {
                         if (xhttp_1.responseText) {
+                            alert(xhttp_1.responseText);
                             document.getElementById("divEmpty").innerHTML = "<a href='backend/Mostrar.php'> Mostrar </a>";
                         }
                         else {
+                            alert(xhttp_1.responseText);
                             alert("Algo salio mal.");
                         }
                     }

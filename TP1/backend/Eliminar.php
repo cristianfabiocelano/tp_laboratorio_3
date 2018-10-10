@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Redireccion</title>
+</head>
+<body>
+    
+</body>
+</html>
 <?php
 include_once "Empleado.php";
 include_once "Fabrica.php";
@@ -24,11 +36,11 @@ while(!feof($file))
             if($fab->EliminarEmpleado($emp1))
             {
                 $fab->GuardarEnArchivo("empleados.txt");
-                echo "Empleado eliminado.</br>";
+                echo "<h4>Empleado eliminado.</h4></br>";
             }
             else
             {
-                echo "No se pudo eliminar.</br>";
+                echo "<h4>No se pudo eliminar.</h4></br>";
             }
         }
     }
@@ -37,8 +49,8 @@ while(!feof($file))
 fclose($file);
 if($noEstaEmpleado)
 {
-    echo "Empleado no encontrado.</br>";
+    echo "<h4>Empleado no encontrado.</h4></br>";
 }
-echo "<a href='../index.html'> index.html </a> </br> <a href='Mostrar.php'> Mostrar.php </a>";
+echo "<a href='../index.php'> Dar alta a empleado </a> </br> <a href='Mostrar.php'> Mostrar Empleados </a>";
 
 ?>

@@ -1,4 +1,5 @@
-Cristian-Celano-40770264-M-150-20000-Mañana
-Fabio-Celano-15558695-M-120-25000-Tarde
-Gladys-Bertelli-35845256-F-124-28000-Noche
-Melisa-Celano-34236896-F-234-20000-Mañana
+Cristian-Celano-1000000-M-100-8000-Mañana-fotos/1000000_Celano.jpg
+Julia-Lopez-1000002-F-102-8000-Mañana-fotos/1000002_Lopez.jpg
+Ricarda-Perrina-1000003-F-103-8000-Mañana-fotos/1000003_Perrina.png
+Lopez-Peloz-1000001-M-101-8000-Mañana-fotos/1000001_Peloz.jpg
+Pato-Ferrari-1000007-M-111-8000-Tarde-fotos/1000007_Ferrari.jpg

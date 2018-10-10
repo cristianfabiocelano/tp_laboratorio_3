@@ -4,7 +4,7 @@ namespace Validar {
     
     export class ValidacionesLogin {
 
-        public static AdministrarValidacionesLogin() {
+        public static AdministrarValidacionesLogin() :boolean{
 
             var dni: string = (<HTMLInputElement>document.getElementById("txtDni")).value;
             var apellido: string = (<HTMLInputElement>document.getElementById("txtApellido")).value;
@@ -17,6 +17,7 @@ namespace Validar {
                 if(Validaciones.ValidarRangoNumerico(numeroDni,1000000,55000000))
                 {
                     flagDni=true;
+                    
                 }
                 
             }
@@ -29,10 +30,10 @@ namespace Validar {
 
             this.AdministarSpanError("spanApellido",flagApellido);
 
-            if(this.VerificarValidacionesLogin())
+           /* if(this.VerificarValidacionesLogin())
             {
                 let xhttp : XMLHttpRequest = new XMLHttpRequest();
-                xhttp.open("POST","backend/verificarUsuario.php",true);
+                xhttp.open("POST","./backend/verificarUsuario.php",true);
                 xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                 let data:string="dni="+dni+"&apellido="+apellido;
                 xhttp.send(data);
@@ -40,13 +41,16 @@ namespace Validar {
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                             if(xhttp.responseText){
-                                (<HTMLDivElement>document.getElementById("divEmpty")).innerHTML ="<a href='backend/verificarUsuario.php'> verificar si el usuario existe </a>";
+                                alert(dni);
+                                
                             }else{
                                 alert("Algo salio mal.");
                             }
                         }
                     };
-            }
+            }*/
+            return this.VerificarValidacionesLogin();
+
         }
 
         public static AdministarSpanError(id:string,ocultar:boolean)

@@ -10,6 +10,12 @@ namespace Validar{
             var legajo: string = (<HTMLInputElement>document.getElementById("txtLegajo")).value;
             var sueldo: string = (<HTMLInputElement>document.getElementById("txtSueldo")).value;
             var turno: string = this.ObtenerTurnoSeleccionado();
+            var foto:string= (<HTMLInputElement>document.getElementById("txtImg")).value;
+
+            let flagFoto:boolean=false;
+            if(this.ValidarCamposVacios(foto))
+            flagFoto=true;
+            ValidacionesLogin.AdministarSpanError("spanImg",flagFoto);
 
             let flagDni:boolean=false;
             if(this.ValidarCamposVacios(dni))
@@ -67,15 +73,21 @@ namespace Validar{
             {
                let xhttp : XMLHttpRequest = new XMLHttpRequest();
             xhttp.open("POST","./backend/Administracion.php",true);
-            xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            let data:string="dni="+dni+"&apellido="+apellido+"&nombre="+nombre+"&sexo="+sexo+"&legajo="+legajo+"&sueldo="+sueldo+"&turno="+turno;
+            let formDatos=document.getElementById("FormularioDatos");
+            let data = new FormData(<HTMLFormElement>formDatos);
+            //xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+
+            //let data:string="dni="+dni+"&apellido="+apellido+"&nombre="+nombre+"&sexo="+sexo+"&legajo="+legajo+"&sueldo="+sueldo+"&turno="+turno;
+
             xhttp.send(data);
 
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                         if(xhttp.responseText){
+                            alert(xhttp.responseText);
                             (<HTMLDivElement>document.getElementById("divEmpty")).innerHTML ="<a href='backend/Mostrar.php'> Mostrar </a>";
                         }else{
+                            alert(xhttp.responseText);
                             alert("Algo salio mal.");
                         }
                     }

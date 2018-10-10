@@ -45,6 +45,7 @@ class Fabrica implements IArchivo{
             if(($emp->GetLegajo()) == ($empleado->GetLegajo()))
             {
                 $indice= array_search($emp,$this->_empleados);
+                unlink($this->_empleados[$indice]->GetPathFoto());
                 unset($this->_empleados[$indice]);
                 $retorno=true;
                 break;
@@ -52,6 +53,11 @@ class Fabrica implements IArchivo{
                     
         } 
         return $retorno;
+    }
+
+    public function GetEmpleados()
+    {
+        return $this->_empleados;
     }
 
     private function EliminarEmpleadosRepetidos ()
@@ -75,7 +81,10 @@ class Fabrica implements IArchivo{
     //implemento de interface
     public function TraerDeArchivo($nombreArchivo)
     {
+        if(file_exists("../archivos/".$nombreArchivo))
         $path="../archivos/".$nombreArchivo;
+        else
+        $path="./archivos/".$nombreArchivo;
         $file=fopen($path,"r");
 
         while(!feof($file))
@@ -87,6 +96,7 @@ class Fabrica implements IArchivo{
             if(count($arrayEmp)>1)
             {
                 $emp = new Empleado($arrayEmp[0],$arrayEmp[1],$arrayEmp[2],$arrayEmp[3],$arrayEmp[4],$arrayEmp[5],$arrayEmp[6]);
+                $emp->SetPathFoto($arrayEmp[7]);
                 $this->AgregarEmpleados($emp);
             }
         }    

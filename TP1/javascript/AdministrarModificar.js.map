@@ -1,0 +1,1 @@
+{"version":3,"file":"AdministrarModificar.js","sourceRoot":"","sources":["AdministrarModificar.ts"],"names":[],"mappings":";AAAA,SAAS,oBAAoB,CAAC,GAAU;IACpC,IAAI,IAAI,GAAoB,QAAQ,CAAC,cAAc,CAAC,cAAc,CAAC,CAAC;IAEpE,IAAI,KAAK,GAAqB,QAAQ,CAAC,cAAc,CAAC,KAAK,CAAC,CAAC;IAC7D,KAAK,CAAC,KAAK,GAAG,GAAG,CAAC,QAAQ,EAAE,CAAC;IAE7B,IAAI,CAAC,MAAM,EAAE,CAAC;AAClB,CAAC"}
